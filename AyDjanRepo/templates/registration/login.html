@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <!-- Add Bootstrap CSS link -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">Login</div>
+            <div class="card-body">
+              <form method="post" class="form">
+                {% csrf_token %} {% if form.errors %}
+                <div class="alert alert-danger">
+                  <strong>Error:</strong>
+                  <ul>
+                    {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                    <li>{{ field }}: {{ error }}</li>
+                    {% endfor %} 
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% endif %}
+                <div class="form-group">
+                  <label for="{{ form.username.id_for_label }}">Username</label>
+                  <input
+                    type="text"
+                    name="{{ form.username.name }}"
+                    id="{{ form.username.id_for_label }}"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="{{ form.password.id_for_label }}">Password</label>
+                  <input
+                    type="password"
+                    name="{{ form.password.name }}"
+                    id="{{ form.password.id_for_label }}"
+                    class="form-control"
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+              </form>
+            </div>
+            <div class="card-footer">
+              <p>
+                Don't have an account?
+                <a href="{% url 'register' %}">Register</a>
+              </p>
+              <p>If you Just Registerd Please Log in </p>
+              <p>admin@2coom.com</p>
+              <p>12345678</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Bootstrap JavaScript and jQuery (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
